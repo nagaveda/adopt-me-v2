@@ -13,14 +13,18 @@ class Carousel extends Component {
     const { images } = this.props;
 
     return (
-      <div className="carousel">
-        <img src={images[active]} alt="animal" />
-        <div className="carousel-smaller">
+      <div className="grid grid-flow-col gap-4 h-auto">
+        <img
+          className="row-span-3 rounded-full"
+          src={images[active]}
+          alt="animal"
+        />
+        <div className="col-span-2 grid grid-cols-3 p-5">
           {images.map((photo, index) => (
             <img
               key={photo}
               src={photo}
-              className={index === active ? "active" : ""}
+              className={index === active ? "" : "opacity-70"}
               alt="animal thumbnail"
               onClick={() => {
                 this.setState({ active: index });

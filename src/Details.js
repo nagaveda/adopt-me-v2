@@ -47,7 +47,7 @@ class Details extends Component {
 
     if (this.state.loading) {
       return (
-        <div className="details">
+        <div>
           <h3>Loading...!</h3>
         </div>
       );
@@ -55,35 +55,38 @@ class Details extends Component {
     //To Test the ErrorBoundary Component!
     // throw new Error("dsacsd");
     return (
-      <div className="details">
+      <div>
         <Carousel images={images} />
-        <div>
-          <h1>{name}</h1>
-          <h2>{`${animal} - ${breed} - ${city} - ${state}`}</h2>
-          <p>{description}</p>
-          {showModal ? (
-            <Modal>
-              <div>
-                <h1>Would you like to adopt {name}</h1>
-                <div className="buttons">
-                  <button onClick={this.adopt}> Yes </button>
-                  <button onClick={this.toggleModal}> No </button>
+        <div className="flex justify-center">
+          <div className="text-center bg-purple-500 mb-10 w-1/2 rounded-md p-4 text-white ">
+            <h1>{name}</h1>
+            <h2>{`${animal} - ${breed} - ${city} - ${state}`}</h2>
+            <p>{description}</p>
+            {showModal ? (
+              <Modal>
+                <div>
+                  <h1>Would you like to adopt {name}</h1>
+                  <div>
+                    <button onClick={this.adopt}> Yes </button>
+                    <button onClick={this.toggleModal}> No </button>
+                  </div>
                 </div>
-              </div>
-            </Modal>
-          ) : null}
-          <ThemeContext.Consumer>
-            {([theme]) => {
-              return (
-                <button
-                  onClick={this.toggleModal}
-                  style={{ backgroundColor: theme }}
-                >
-                  Adopt {name}
-                </button>
-              );
-            }}
-          </ThemeContext.Consumer>
+              </Modal>
+            ) : null}
+            <ThemeContext.Consumer>
+              {([theme]) => {
+                return (
+                  <button
+                    className="rounded-sm"
+                    onClick={this.toggleModal}
+                    style={{ backgroundColor: theme }}
+                  >
+                    Adopt {name}
+                  </button>
+                );
+              }}
+            </ThemeContext.Consumer>
+          </div>
         </div>
       </div>
     );
